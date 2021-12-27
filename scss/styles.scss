@@ -168,7 +168,7 @@ body {
 
 		.buttons {
 			display: grid;
-			grid-template-columns: [btn-1] 10% [btn-2] 22% [btn-3] 13% [btn-4] 10% [btn-5] 13% [btn-6] 22% [btn-7] 10% [btn-8];
+			grid-template-columns: [btn-1] 6.33% [btn-2] 23% [btn-3] 17% [btn-4] 1fr [btn-5] 17% [btn-6] 23% [btn-7] 6.33% [btn-8];
 			margin: 1rem 0 3rem;
 
 			div {
