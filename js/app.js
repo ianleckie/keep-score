@@ -33,6 +33,10 @@ const KeepScore = {
 			
 			KeepScoreElement.className = ''
 			KeepScoreElement.classList.add("playing")
+
+			var listElements = document.getElementsByTagName('li')
+
+			listElements[0].classList.add('turn')
 		
 		},
 		
@@ -81,7 +85,7 @@ const KeepScore = {
 
 			this.addScores()
 
-			this.gamePlayers.sort( (a, b) => b.score - a.score );
+			this.gamePlayers.sort( (a, b) => b.score - a.score )
 
 			KeepScoreElement.className = ''
 			KeepScoreElement.classList.add("ending")
