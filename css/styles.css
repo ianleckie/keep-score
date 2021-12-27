@@ -159,7 +159,7 @@ textarea {
 
 body {
   display: grid;
-  grid-template-rows: [head] 7rem [list] 3rem [main-start] 1fr [main-end];
+  grid-template-rows: [head] 7rem [list] 3rem [main-start] 1fr [main-end] 2rem [end-row];
   grid-template-columns: [left] 1fr [mid-start] 20rem [mid-end] 1fr [right];
 }
 body header {
@@ -172,6 +172,14 @@ body header {
 body header h1 {
   font-weight: 600;
   margin: 3rem 10vw;
+}
+body footer {
+  display: grid;
+  grid-row: main-end/end-row;
+  grid-column: mid-start/mid-end;
+}
+body footer p {
+  text-align: center;
 }
 body #keep-score {
   display: grid;
@@ -372,7 +380,7 @@ h3 {
     page-break-after: avoid;
   }
 
-  header, header h1, .buttons {
+  header, header h1, .buttons, footer {
     display: none !important;
   }
 }
