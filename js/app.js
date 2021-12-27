@@ -61,7 +61,7 @@ const KeepScore = {
 			// add scores that need to be added
 			for ( gamePlayer of this.gamePlayers ) {
 				
-				if ( gamePlayer.added != 0 ) {
+				if ( gamePlayer.total != 0 ) {
 					
 					gamePlayer.score = gamePlayer.total
 					gamePlayer.total = 0
