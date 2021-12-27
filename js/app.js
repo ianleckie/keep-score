@@ -26,17 +26,28 @@ const KeepScore = {
 		},
 		
 		startGame() {
-			
-			this.starting = false
-			this.playing = true
-			this.ending = false
-			
-			KeepScoreElement.className = ''
-			KeepScoreElement.classList.add("playing")
 
-			var listElements = document.getElementsByTagName('li')
+			let canStart = true;
 
-			listElements[0].classList.add('turn')
+			// don't start if there are any un-named players
+			for ( gamePlayer of this.gamePlayers ) {
+				if ( gamePlayer.name == '' ) canStart = false
+			}
+
+			if ( canStart ) {
+			
+				this.starting = false
+				this.playing = true
+				this.ending = false
+				
+				KeepScoreElement.className = ''
+				KeepScoreElement.classList.add("playing")
+
+				var listElements = document.getElementsByTagName('li')
+
+				listElements[0].classList.add('turn')
+
+			}
 		
 		},
 		
