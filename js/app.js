@@ -49,15 +49,7 @@ const KeepScore = {
 
 				listElement.classList.add('turn')
 
-				for ( const child of listElement.children ) {
-
-					if ( child.className == 'add' ) {
-
-						child.children[0].focus()
-
-					} 
-
-				}
+				this.pullFocus( listElement )
 
 			} else {
 
@@ -65,6 +57,20 @@ const KeepScore = {
 
 			}
 		
+		},
+
+		pullFocus( element ) {
+
+			for ( const child of element.children ) {
+
+				if ( child.className == 'add' ) {
+
+					child.children[0].focus()
+
+				} 
+
+			}
+
 		},
 		
 		playerTurn( event ) {
@@ -81,15 +87,7 @@ const KeepScore = {
 
 				listElement.classList.add('turn')
 
-				for ( const child of listElement.children ) {
-
-					if ( child.className == 'add' ) {
-
-						child.children[0].focus()
-
-					} 
-
-				}
+				this.pullFocus( listElement )
 
 				this.addScores()
 
