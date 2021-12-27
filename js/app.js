@@ -1,4 +1,4 @@
-const KeepScoreElement = document.getElementById("keep-score")
+const KeepScoreElement = document.getElementById('keep-score')
 
 let gamePlayersDefault = [
 		{ name: '', score: 0, added: '', total: 0, turn: false },
@@ -41,7 +41,7 @@ const KeepScore = {
 				this.ending = false
 				
 				KeepScoreElement.className = ''
-				KeepScoreElement.classList.add("playing")
+				KeepScoreElement.classList.add('playing')
 
 				var listElements = document.getElementsByTagName('li')
 
@@ -103,7 +103,7 @@ const KeepScore = {
 			this.gamePlayers.sort( (a, b) => b.score - a.score )
 
 			KeepScoreElement.className = ''
-			KeepScoreElement.classList.add("ending")
+			KeepScoreElement.classList.add('ending')
 
 			var listElement = event.target.closest('li')
 
@@ -118,14 +118,6 @@ const KeepScore = {
 			let playerId = event.target.nextSibling.value
 
 			this.gamePlayers[playerId].total = Number(this.gamePlayers[playerId].score) + Number(this.gamePlayers[playerId].added)
-
-		},
-
-		showScore() {
-
-			alert('ok')
-
-			return ( this.playing || this.ending ) && !this.starting
 
 		}
 	
