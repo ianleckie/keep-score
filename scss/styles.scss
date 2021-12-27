@@ -160,6 +160,13 @@ body {
 			display: grid;
 			grid-template-columns: [btn-1] 10% [btn-2] 22% [btn-3] 13% [btn-4] 10% [btn-5] 13% [btn-6] 22% [btn-7] 10% [btn-8];
 			margin: 1rem 0 3rem;
+
+			div {
+				display: grid;
+				grid-column: btn-2 / btn-7;
+				text-align: center;
+				font-weight: 600;
+			}
 		}
 
 		button {
