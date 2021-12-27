@@ -253,10 +253,12 @@ body #keep-score ul li .score input::before, body #keep-score ul li .add input::
   display: inline-block;
 }
 body #keep-score ul li .add {
+  display: none;
   text-align: left;
   padding-left: 0.5rem;
 }
 body #keep-score ul li .total {
+  display: none;
   margin: 0.5rem -0.5rem 0 0.5rem;
   padding: 0 0.5rem 0 0;
   font-weight: 600;
@@ -265,6 +267,15 @@ body #keep-score ul li .total {
 body #keep-score.playing li:hover {
   background-color: lavender;
   cursor: pointer;
+}
+body #keep-score.playing li.turn {
+  background-color: mediumaquamarine;
+}
+body #keep-score.playing li.turn .add {
+  display: block !important;
+}
+body #keep-score.playing li.turn .total {
+  display: block !important;
 }
 body #keep-score .buttons {
   display: grid;

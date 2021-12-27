@@ -40,12 +40,23 @@
 
 		<ul>
 
-			<li v-for="gamePlayer in gamePlayers">
-				<label v-if="starting"><input type="text" v-model="gamePlayer.name"></label>
-				<div v-if="playing" class="name">{{ gamePlayer.name }}</div>
-				<div v-if="playing" class="score">{{ gamePlayer.score }}</div>
-				<div v-if="gamePlayer.turn" class="add">+<input type="text"></div>
-				<div v-if="gamePlayer.turn" class="total">20</div>
+			<li v-for="(gamePlayer, id) in gamePlayers" @click="playerTurn">
+				
+				<label v-if="starting">
+					<input type="text" :placeholder="'Player ' + ( id + 1 )" v-model="gamePlayer.name">
+				</label>
+				
+				<div v-if="playing||ending" class="name">{{ gamePlayer.name }}</div>
+				
+				<div v-if="playing||ending" class="score">{{ gamePlayer.score }}</div>
+				
+				<div class="add">
+					+<input type="text" v-model="gamePlayer.added" @keyup="addScore">
+					<input type="hidden" v-model="id">
+				</div>
+				
+				<div class="total">{{ gamePlayer.total }}</div>
+			
 			</li>
 
 			<li v-if="starting" class="add-player-row">
@@ -57,6 +68,8 @@
 		<div class="buttons">
 
 			<button v-if="starting" id="start-game" @click="startGame">Start Game</button>
+
+			<button v-if="playing" id="end-game" @click="endGame">End Game</button>
 
 		</div>
 
