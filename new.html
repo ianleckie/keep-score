@@ -24,6 +24,8 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/styles.css">
 
+	<script src="https://unpkg.com/vue@next"></script>
+
 </head>
 
 <body>
@@ -38,23 +40,23 @@
 
 		<ul>
 
-			<li>
-				<label><input type="text"></label>
+			<li v-for="gamePlayer in gamePlayers">
+				<label v-if="starting"><input type="text" v-model="gamePlayer.name"></label>
+				<div v-if="playing" class="name">{{ gamePlayer.name }}</div>
+				<div v-if="playing" class="score">{{ gamePlayer.score }}</div>
+				<div v-if="gamePlayer.turn" class="add">+<input type="text"></div>
+				<div v-if="gamePlayer.turn" class="total">20</div>
 			</li>
 
-			<li>
-				<label><input type="text"></label>
-			</li>
-
-			<li class="add-player-row">
-				<button id="add-player">Add Player</button>
+			<li v-if="starting" class="add-player-row">
+				<button id="add-player" @click="addPlayer">Add Player</button>
 			</li>
 
 		</ul>
 
 		<div class="buttons">
 
-			<button id="start-game">Start Game</button>
+			<button v-if="starting" id="start-game" @click="startGame">Start Game</button>
 
 		</div>
 
