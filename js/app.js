@@ -47,6 +47,10 @@ const KeepScore = {
 
 				listElements[0].classList.add('turn')
 
+			} else {
+
+				alert('Please give all players a name first.');
+
 			}
 		
 		},
