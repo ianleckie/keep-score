@@ -7,13 +7,8 @@
 
 	<title>KeepScore</title>
 	
-	<meta name="description" content="">
+	<meta name="description" content="A score keeping web toy.">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta property="og:title" content="">
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="">
-	<meta property="og:image" content="">
 
 	<link rel="manifest" href="site.webmanifest">
 	<link rel="apple-touch-icon" href="icon.png">
@@ -24,14 +19,11 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/styles.css">
 
+	<script src="https://unpkg.com/vue@next"></script>
+
 </head>
 
 <body>
-
-	<script src="js/vendor/modernizr-3.11.2.min.js"></script>
-	<script src="js/vendor/jquery-3.6.0.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
 
 	<header>
 
@@ -39,47 +31,46 @@
 
 	</header>
 
-	<section id="keep-score" class="playing">
+	<section id="keep-score" class="new">
 
 		<ul>
 
-			<li>
-				<div class="name">Ian</div>
-				<div class="score">20</div>
+			<li v-for="(gamePlayer, id) in gamePlayers" @click="playerTurn">
+				
+				<label v-if="starting">
+					<input type="text" :placeholder="'Player ' + ( id + 1 )" v-model="gamePlayer.name">
+				</label>
+				
+				<div v-if="playing||ending" class="name">{{ gamePlayer.name }}</div>
+				
+				<div v-if="playing||ending" class="score">{{ gamePlayer.score }}</div>
+				
+				<div class="add">
+					+<input type="text" v-model="gamePlayer.added" @keyup="addScore">
+					<input type="hidden" v-model="id">
+				</div>
+				
+				<div class="total">{{ gamePlayer.total }}</div>
+			
 			</li>
-			<li>
-				<div class="name">Ian</div>
-				<div class="score">20</div>
-			</li>
-			<li class="turn">
-				<!-- <label><input type="text"></label> -->
-				<div class="name">Ian</div>
-				<div class="score">20</div>
-				<div class="add">+<input type="text"></div>
-				<div class="total">20</div>
-			</li>
-			<li>
-				<div class="name">Ian</div>
-				<div class="score">20</div>
-			</li>
-			<li>
-				<div class="name">Ian</div>
-				<div class="score">20</div>
-			</li>
-			<li>
-				<div class="name">Ian</div>
-				<div class="score">20</div>
+
+			<li v-if="starting" class="add-player-row">
+				<button id="add-player" @click="addPlayer">Add Player</button>
 			</li>
 
 		</ul>
 
 		<div class="buttons">
 
-			<button id="end-game">End Game</button>
+			<button v-if="starting" id="start-game" @click="startGame">Start Game</button>
+
+			<button v-if="playing" id="end-game" @click="endGame">End Game</button>
 
 		</div>
 
 	</section>
+
+	<script src="js/app.js"></script>
 
 </body>
 
