@@ -1,0 +1,284 @@
+// modules
+@use 'html5boilerplate';
+// @use 'simple-grid';
+
+// webfonts
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+
+// colors
+
+
+// font styles
+
+
+// shadows and rgba colors
+
+
+// material icons
+
+
+// mixins
+
+
+
+/* site styles */
+* {
+	box-sizing: border-box;
+	font-family: 'IBM Plex Mono', monospace;
+}
+
+body {
+	display: grid;
+	grid-template-rows: [head] 7rem [list] 3rem [main-start] 1fr [main-end];
+	grid-template-columns: [left] 1fr [mid-start] 20rem [mid-end] 1fr [right];
+
+	header {
+		background-color: black;
+		display: grid;
+		grid-row: head / main-start;
+		grid-column: left / right;
+		color: white;
+
+		h1 {
+			font-weight: 600;
+			margin: 3rem 10vw;
+		}
+	}
+
+	#keep-score {
+		display: grid;
+		grid-row: list / main-end;
+		grid-column: mid-start / mid-end;
+
+		ul {
+			background-color: white;
+			list-style: none;
+			padding: 0 1rem 1rem 0;
+			background-color: darkmagenta;
+			margin-left: 1.5rem;
+
+			li {
+				font-size: 2rem;
+				padding: 1rem;
+				border: 2px solid black;
+				border-bottom-width: 1px;
+				background-color: white;
+				margin-left: -1rem;
+				margin-top: -1rem;
+				position: relative;
+				display: grid;
+				grid-template-columns: [name] 1fr [score] 6rem [list-end];
+
+				&.add-player-row {
+					background-color: lavender;
+				}
+
+				&:hover {
+					// background-color: lavender;
+					// cursor: pointer;
+				}
+
+				&.turn {
+					background-color: mediumaquamarine;
+
+					&:hover {
+						cursor: default;
+						background-color: mediumaquamarine;
+					}
+				}
+
+				+li {
+					border-top: none;
+					margin-top: 0;
+				}
+
+				&:last-child {
+					border-bottom-width: 2px;
+				}
+
+				input[type="text"] {
+					border: 1px solid black;
+					padding: 0 0.5rem;
+
+					&:focus {
+						background-color: cornsilk;
+						outline: none;
+					}
+				}
+
+				label {
+					display: block;
+					display: grid;
+					grid-column: name / list-end;
+
+					input {
+						width: 100%;
+					}
+				}
+
+				.name {
+					display: grid;
+					grid-column: name / score;
+				}
+
+				.score, .add, .total {
+					display: grid;
+					grid-column: score / list-end;
+					text-align: right;
+					position: relative;
+					height: 2.75rem;
+
+					input {
+						position: absolute;
+						right: -0.5rem;
+						width: 4rem;
+						margin: 0;
+						text-align: right;
+
+						&::before {
+							content: '+';
+							display: inline-block;
+						}
+					}
+				}
+
+				.add {
+					text-align: left;
+					padding-left: 0.5rem;
+				}
+
+				.total {
+					margin: 0.5rem -0.5rem 0 0.5rem;
+					padding: 0 0.5rem 0 0;
+					font-weight: 600;
+					border-top: 2px solid black;
+				}
+			}
+		}
+
+		&.playing {
+			li:hover {
+				background-color: lavender;
+				cursor: pointer;
+			}
+		}
+
+		.buttons {
+			display: grid;
+			grid-template-columns: [btn-left] 8% [btn-1] 28% [btn-2] 28% [btn-3] 28% [btn-4] 8% [btn-right];
+			margin: 1rem 0 3rem;
+		}
+
+		button {
+			background: black;
+			color: white;
+			border: 2px solid black;
+			font-weight: 600;
+			line-height: 3rem;
+			font-size: 1rem;
+			display: grid;
+			grid-column: btn-2 / btn-3;
+
+			&:hover {
+				cursor: pointer;
+				background: mediumaquamarine;
+				color: black;
+			}
+
+			&#add-player {
+				line-height: 2rem;
+			}
+
+			// &#start-game {
+			// 	display: grid;
+			// 	grid-column: btn-2 / btn-3;
+			// }
+
+			// &#new-game {
+			// 	display: grid;
+			// 	grid-column: btn-1 / btn-2;
+			// }
+
+			// &#end-game {
+			// 	display: grid;
+			// 	grid-column: btn-3 / btn-4;
+			// }
+		}
+	
+	}
+
+}
+
+
+/* responsive styles */
+@media only screen and (min-width: 35em) {
+	body {
+		grid-template-columns: [left] 1fr [mid-start] 28rem [mid-end] 1fr [right];
+	}
+}
+
+@media print,
+	(-webkit-min-device-pixel-ratio: 1.25),
+	(min-resolution: 1.25dppx),
+	(min-resolution: 120dpi) {
+	/* Style adjustments for high resolution devices */
+}
+
+
+/* print styles */
+@media print {
+	*,
+	*::before,
+	*::after {
+		background: #fff !important;
+		color: #000 !important;
+		/* Black prints faster */
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+
+	a[href]::after {
+		content: " (" attr(href) ")";
+	}
+
+	abbr[title]::after {
+		content: " (" attr(title) ")";
+	}
+
+	/*
+	 * Don't show links that are fragment identifiers,
+	 * or use the `javascript:` pseudo protocol
+	 */
+	a[href^="#"]::after,
+	a[href^="javascript:"]::after {
+		content: "";
+	}
+
+	pre {
+		white-space: pre-wrap !important;
+	}
+
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+}
