@@ -45,7 +45,19 @@ const KeepScore = {
 
 				var listElements = document.getElementsByTagName('li')
 
-				listElements[0].classList.add('turn')
+				var listElement = listElements[0]
+
+				listElement.classList.add('turn')
+
+				for ( const child of listElement.children ) {
+
+					if ( child.className == 'add' ) {
+
+						child.children[0].focus()
+
+					} 
+
+				}
 
 			} else {
 
@@ -68,6 +80,16 @@ const KeepScore = {
 				}
 
 				listElement.classList.add('turn')
+
+				for ( const child of listElement.children ) {
+
+					if ( child.className == 'add' ) {
+
+						child.children[0].focus()
+
+					} 
+
+				}
 
 				this.addScores()
 
