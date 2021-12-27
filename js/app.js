@@ -38,7 +38,9 @@ const KeepScore = {
 		
 		playerTurn( event ) {
 
-			if ( this.playing ) {
+			var listElement = event.target.closest('li')
+
+			if ( listElement.className != 'turn' && this.playing ) {
 
 				var listElement = event.target.closest('li')
 
