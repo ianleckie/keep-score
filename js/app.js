@@ -9,11 +9,12 @@ const KeepScore = {
 	
 	data() {
 		return {
-			gamePlayers: gamePlayersDefault,
+			gamePlayers: this.getCurGame(),
 			placeholder: 'Player Name',
 			starting: true,
 			playing: false,
 			ending: false,
+			loadedFromSave: false
 		}
 	},
 	
@@ -50,6 +51,8 @@ const KeepScore = {
 				listElement.classList.add('turn')
 
 				this.pullFocus( listElement )
+
+				this.saveCurGame()
 
 			} else {
 
@@ -91,6 +94,8 @@ const KeepScore = {
 
 				this.addScores()
 
+				this.saveCurGame()
+
 			}
 
 		},
@@ -131,6 +136,8 @@ const KeepScore = {
 				listItem.classList.remove('turn')
 			}
 
+			localStorage.clear()
+
 		},
 		
 		addScore( event ) {
@@ -138,6 +145,36 @@ const KeepScore = {
 			let playerId = event.target.nextSibling.value
 
 			this.gamePlayers[playerId].total = Number(this.gamePlayers[playerId].score) + Number(this.gamePlayers[playerId].added)
+
+		},
+
+		saveCurGame() {
+
+			localStorage.setItem( 'curGame', JSON.stringify( this.gamePlayers ) )
+
+		},
+
+		getCurGame() {
+
+			let curGame = localStorage.getItem( 'curGame' )
+
+			if ( !curGame || curGame == 'undefined' ) {
+
+				curGame = gamePlayersDefault
+
+				this.loadedFromSave = false;
+
+			} else {
+
+				curGame = JSON.parse( curGame )
+
+				this.saveCurGame()
+
+				this.loadedFromSave = true;
+
+			}
+
+			return curGame
 
 		}
 	
