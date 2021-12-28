@@ -43,9 +43,9 @@ const KeepScore = {
 				KeepScoreElement.className = ''
 				KeepScoreElement.classList.add('playing')
 
-				var listElements = document.getElementsByTagName('li')
+				let listElements = document.getElementsByTagName('li')
 
-				var listElement = listElements[0]
+				let listElement = listElements[0]
 
 				listElement.classList.add('turn')
 
@@ -75,11 +75,11 @@ const KeepScore = {
 		
 		playerTurn( event ) {
 
-			var listElement = event.target.closest('li')
+			let listElement = event.target.closest('li')
 
 			if ( listElement.className != 'turn' && this.playing ) {
 
-				var listElement = event.target.closest('li')
+				let listElement = event.target.closest('li')
 
 				for ( const listItem of document.getElementsByTagName('li') ) {
 					listItem.classList.remove('turn')
@@ -125,7 +125,7 @@ const KeepScore = {
 			KeepScoreElement.className = ''
 			KeepScoreElement.classList.add('ending')
 
-			var listElement = event.target.closest('li')
+			let listElement = event.target.closest('li')
 
 			for ( const listItem of document.getElementsByTagName('li') ) {
 				listItem.classList.remove('turn')
