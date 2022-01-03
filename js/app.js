@@ -1,8 +1,10 @@
 const KeepScoreElement = document.getElementById('keep-score')
 
+let gamePlayerPrototype = { name: '', score: 0, added: '', total: 0, turn: false }
+
 let gamePlayersDefault = [
-		{ name: '', score: 0, added: '', total: 0, turn: false },
-		{ name: '', score: 0, added: '', total: 0, turn: false }
+		JSON.parse( JSON.stringify( gamePlayerPrototype ) ),
+		JSON.parse( JSON.stringify( gamePlayerPrototype ) )
 	]
 
 const KeepScore = {
@@ -22,13 +24,13 @@ const KeepScore = {
 		
 		addPlayer() {
 			
-			this.gamePlayers.push( { name: '', score: 0, added: '', total: 0, turn: false } )
+			this.gamePlayers.push( JSON.parse( JSON.stringify( gamePlayerPrototype ) ) )
 		
 		},
 		
 		startGame() {
 
-			let canStart = true;
+			let canStart = true
 
 			// don't start if there are any un-named players
 			for ( gamePlayer of this.gamePlayers ) {
@@ -56,7 +58,7 @@ const KeepScore = {
 
 			} else {
 
-				alert('Please give all players a name first.');
+				alert('Please give all players a name first.')
 
 			}
 		
@@ -162,7 +164,7 @@ const KeepScore = {
 
 				curGame = gamePlayersDefault
 
-				this.loadedFromSave = false;
+				this.loadedFromSave = false
 
 			} else {
 
@@ -170,7 +172,7 @@ const KeepScore = {
 
 				this.saveCurGame()
 
-				this.loadedFromSave = true;
+				this.loadedFromSave = true
 
 			}
 
